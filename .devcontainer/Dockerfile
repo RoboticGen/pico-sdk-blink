@@ -1,9 +1,7 @@
 # See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.177.0/containers/cpp/.devcontainer/base.Dockerfile
 
 # [Choice] Debian / Ubuntu version: debian-10, debian-9, ubuntu-20.04, ubuntu-18.04
-ARG VARIANT="ubuntu-22.04"
-
-FROM mcr.microsoft.com/vscode/devcontainers/cpp:0-$VARIANT
+FROM --platform=linux/amd64 ubuntu:20.04
 
 ENV TOOLCHAINURL="https://developer.arm.com/-/media/Files/downloads/gnu/11.3.rel1/binrel"
 ENV TOOLCHAINARCHIVE="arm-gnu-toolchain-11.3.rel1-x86_64-arm-none-eabi.tar.xz"
@@ -11,7 +9,7 @@ ENV TOOLCHAINDIR="arm-gnu-toolchain-11.3.rel1-x86_64-arm-none-eabi"
 
 # [Optional] Uncomment this section to install additional packages.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends cmake build-essential wget ca-certificates \
+    && apt-get -y install --no-install-recommends cmake build-essential wget ca-certificates git\
     gdb-multiarch automake autoconf libtool libftdi-dev libusb-1.0-0-dev pkg-config clang-format libhidapi-dev
 WORKDIR /apps
 
@@ -37,4 +35,4 @@ RUN cd /apps && git clone https://github.com/raspberrypi/picotool.git --depth=1 
 RUN cd /apps && git clone https://github.com/wtarreau/bootterm.git --depth=1 \
     && cd bootterm && make -j 8 install 
 
-RUN usermod -aG plugdev vscode
+# RUN usermod -aG plugdev vscode
