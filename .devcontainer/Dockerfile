@@ -35,4 +35,7 @@ RUN cd /apps && git clone https://github.com/raspberrypi/picotool.git --depth=1 
 RUN cd /apps && git clone https://github.com/wtarreau/bootterm.git --depth=1 \
     && cd bootterm && make -j 8 install 
 
+RUN apt install -y curl
+RUN curl -L https://wokwi.com/ci/install.sh | sh
+
 # RUN usermod -aG plugdev vscode
