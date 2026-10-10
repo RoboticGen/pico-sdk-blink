@@ -23,3 +23,5 @@ This project includes a Wokwi Automation Scenario in [blink.test.yaml](blink.tes
 export WOKWI_CLI_TOKEN="{YOUR_TOKEN}"
 wokwi-cli . --scenario blink.test.yaml --timeout 1000
 ```
+
+Use your own token locally and keep it out of committed files. For GitHub Actions, store it in the repository secret `WOKWI_CLI_TOKEN`; the existing workflow reads that secret.
